@@ -4,7 +4,6 @@ import validateTokenMiddleware from '../middlewares/validateTokenMiddleware.js';
 
 const testRouter = Router();
 
-testRouter.get("/tests/teachers", validateTokenMiddleware, testController.getTestByTeacher);
-testRouter.get("/tests/disciplines", validateTokenMiddleware, testController.getTestByDiscipline);
+testRouter.get("/tests", validateTokenMiddleware, testController.getTests)
 
 export default testRouter;

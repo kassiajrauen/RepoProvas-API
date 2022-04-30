@@ -1,14 +1,13 @@
 import {Request, Response} from 'express';
 import * as testService from '../services/testService.js';
 
-export async function getTestByDiscipline(req: Request, res: Response){
-    const testByDisciplines = await testService.getTestByDisciplines();
+export async function getTests(req: Request, res: Response){
+    const {groupBy} = req.query as {groupBy: string};
 
-    res.send(testByDisciplines);
-}
+    if (groupBy !== "disciplines" && groupBy !== "teachers") {
+        return res.sendStatus(400);
+    }
 
-export async function getTestByTeacher(req: Request, res: Response){
-   const testByTeacher = await testService.getTestByTeachers();
-
-   res.send(testByTeacher);
+    const tests = await testService.find({groupBy});
+    res.send({tests});
 }
