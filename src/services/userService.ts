@@ -10,11 +10,9 @@ export async function singUp(user: userRepository.userInsert){
     const userExist = await userRepository.findByEmail( user.email );
     if(userExist) throw {type: 'conflict', message: 'This email is already registered'}
 
-    const passwordHash = bcrypt.hashSync(user.password, 10);
+    const passwordHash = bcrypt.hashSync(user.password, 12);
 
-    const {email, password} = user;
-
-    await userRepository.create( {email, password: passwordHash} );
+    await userRepository.create( {...user, password: passwordHash} );
 }
 
 export async function login(user: userRepository.userInsert){
@@ -22,7 +20,7 @@ export async function login(user: userRepository.userInsert){
 
     const userExist = await userRepository.findByEmail( email );
     const comparePassword = bcrypt.compare(password, userExist.password);
-    if(!userExist || !comparePassword) throw {type: 'bad_request', message: 'Incorrect email or password'}
+    if(!userExist || !comparePassword) throw {type: 'unauthorized', message: 'Incorrect email or password'}
 
     const sessionExist = await sessionRepository.findByUserId(userExist.id );
     

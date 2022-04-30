@@ -6,25 +6,25 @@ export interface Token {
 }
 
 export async function create(tokenData: Token){
-    await prisma.sessions.create({
+    await prisma.session.create({
         data: tokenData
     })
 }
 
 export async function findByUserId(userId: number){
-    return await prisma.sessions.findFirst({
+    return await prisma.session.findFirst({
         where: { userId}
     })
 }
 
 export async function findByToken(token: string){
-    return await prisma.sessions.findFirst({
+    return await prisma.session.findFirst({
         where: { token}
     })
 }
 
 export async function remove(id: number){
-    return await prisma.sessions.delete({
+    return await prisma.session.delete({
         where: { id }
     })
 }

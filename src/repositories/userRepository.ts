@@ -11,7 +11,7 @@ export type userInsert = Omit<User, "id">;
 export async function create(user: userInsert){
    const {email, password} = user;
 
-   return prisma.users.create({
+   return prisma.user.create({
     data: {
         email, password
     }
@@ -19,7 +19,7 @@ export async function create(user: userInsert){
 }
 
 export async function findByEmail(email: string){
-    return await prisma.users.findUnique ({ 
+    return await prisma.user.findUnique ({ 
     where: {
         email
     }
