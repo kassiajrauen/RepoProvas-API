@@ -1,21 +1,7 @@
-import express, {json} from 'express';
-import cors from 'cors';
-import dotenv from 'dotenv';
-import "express-async-errors";
-import errorHandlerMiddleware from './middlewares/errorHandlerMiddleware.js';
-import router from './routes/index.js';
-
-dotenv.config();
-
-const server = express();
-server.use(json());
-server.use(cors());
-server.use(router);
-server.use(errorHandlerMiddleware);
+import  app  from "./app.js";
 
 const PORT = process.env.PORT || 5000;
 
-server.listen(PORT, () => {
+app.listen(PORT, () => {
     console.log(`Running on port ${PORT}`)
 });
-
