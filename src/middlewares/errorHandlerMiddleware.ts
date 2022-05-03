@@ -6,7 +6,7 @@ export default function errorHandlerMiddleware (error, req: Request, res: Respon
     if(error.type === 'unauthorized'){
         return res.sendStatus(401);
     } else if(error.type === 'conflict'){
-        return res.sendStatus(401);
+        return res.sendStatus(409);
     } else if(error.type === 'not_found'){
         return res.sendStatus(404);
     } else if(error.type === 'bad_request'){
