@@ -11,3 +11,9 @@ export async function find(filter: Filter){
         return testRepository.getTestsByTeachers();
     }
 }
+
+export async function views(id: number){
+   const views = await testRepository.views(id);
+
+   return views;
+}

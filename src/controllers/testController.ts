@@ -11,3 +11,10 @@ export async function getTests(req: Request, res: Response){
     const tests = await testService.find({groupBy});
     res.send({tests});
 }
+
+export async function views(req: Request, res: Response){
+    const {id} = req.params;
+
+    const views = await testService.views(Number(id));
+    res.status(200).send(views);
+}

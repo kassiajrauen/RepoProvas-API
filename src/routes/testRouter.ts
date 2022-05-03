@@ -5,5 +5,6 @@ import validateTokenMiddleware from '../middlewares/validateTokenMiddleware.js';
 const testRouter = Router();
 
 testRouter.get("/tests", validateTokenMiddleware, testController.getTests)
+testRouter.patch("/tests/:id/views", validateTokenMiddleware, testController.views);
 
 export default testRouter;

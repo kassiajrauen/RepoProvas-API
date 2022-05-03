@@ -44,3 +44,17 @@ export async function getTestsByTeachers() {
     },
   });
 }
+
+export async function views(id: number) {
+  await prisma.test.update({
+    where: {
+      id,
+    }, 
+    data: {
+      views: {
+        increment: 1,
+      } 
+    },
+  })
+}
+
